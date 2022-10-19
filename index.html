@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concat</title>
+    
+    <script type="module" src="index.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="style.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/89d049f31e.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="topbar">
+        <div class="top-bar">
+            <p class="logo">.Concat</p>
+        </div>
+    </div>
+
+    <div class="scbox">
+        <div class="sctitle">
+            Schedule
+        </div>
+
+        <div class="scheader">
+            <div class="scheaderperiod">Period</div>
+            <div class="scheadername">Course</div>
+        </div>
+        <div class="sccourse" id="c1">
+            <div class="scperiod">1</div>
+            <div class="scname">
+                <input class="scinput" type="text" id="c1input">
+                <ul class="list1"></ul>
+            </div>
+        </div>
+        <div class="sccourse" id="c2">
+            <div class="scperiod">2</div>
+            <div class="scname">
+                <input class="scinput" type="text" id="c2input">
+                <ul class="list2"></ul>
+            </div>
+        </div>
+        <div class="sccourse" id="c3">
+            <div class="scperiod">3</div>
+            <div class="scname">
+                <input class="scinput" type="text" id="c3input">
+                <ul class="list3"></ul>
+            </div>
+        </div>
+        <div class="sccourse" id="c4">
+            <div class="scperiod">4</div>
+            <div class="scname">
+                <input class="scinput" type="text" id="c4input">
+                <ul class="list4"></ul>
+            </div>
+        </div>
+        <div class="sccourse" id="c5">
+            <div class="scperiod">5</div>
+            <div class="scname">
+                <input class="scinput" type="text" id="c5input">
+                <ul class="list5"></ul>
+            </div>
+        </div>
+        <div class="sccourselast" id="c6">
+            <div class="scperiod">6</div>
+            <div class="scname">
+                <input class="scinput" type="text" id="c6input">
+                <ul class="list6"></ul>
+            </div>
+        </div>
+
+        <div class="scwantedtitle">Wanted course:</div>
+        <div class="scwanted">
+            <input type="text" class="wantedInput" id="c7input">
+            <ul class="list7"></ul>
+        </div>
+        
+        <div class="scunwantedtitle">Course to drop:</div>
+        <div class="scunwanted">
+            <input type="text" class="unwantedInput" id="c8input">
+            <ul class="list8"></ul>
+        </div>
+
+        <button class="scsubmit">Find Solution</button>
+
+        <div class="errormsg"></div>
+    
+    </div>
+
+    <div class="coursebox">
+        <div class="coursetitle">
+            Courses
+        </div>
+
+        <div class="form">
+            <input type="text" placeholder="Course Name" class="formname">
+            <input type="number" placeholder="Period" class="formperiod">
+            <input type="text" placeholder="Teacher" class="formteacher">
+            <button class="submit">Add Course</button>
+        </div>
+        <div class="status"></div>
+        <div class="header">
+            <div class="headerperiod">Period</div>
+            <div class="headername">Course</div>
+            <div class="headerteacher">Teacher</div>
+        </div>
+        <div class="listbox">
+        </div>
+    </div>
+
+    <div class="solutionbox">
+        <div class="stitle">
+            Solutions
+        </div>
+        <div class="cardsbox">
+
+        </div>
+    </div>
+</body>
+</html>
