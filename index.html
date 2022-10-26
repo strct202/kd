@@ -18,6 +18,40 @@
         </div>
     </div>
 
+    <div class="wrap">
+        <h1>CONCAT</h1>
+        <h2>Your scheduling solution.</h2>
+        <div id="loading" class="hide loader loader--style6" title="5">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+               width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+              <rect x="0" y="13" width="4" height="5" fill="#333">
+                <animate attributeName="height" attributeType="XML"
+                  values="5;21;5" 
+                  begin="0s" dur="0.6s" repeatCount="indefinite" />
+                <animate attributeName="y" attributeType="XML"
+                  values="13; 5; 13"
+                  begin="0s" dur="0.6s" repeatCount="indefinite" />
+              </rect>
+              <rect x="10" y="13" width="4" height="5" fill="#333">
+                <animate attributeName="height" attributeType="XML"
+                  values="5;21;5" 
+                  begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                <animate attributeName="y" attributeType="XML"
+                  values="13; 5; 13"
+                  begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+              </rect>
+              <rect x="20" y="13" width="4" height="5" fill="#333">
+                <animate attributeName="height" attributeType="XML"
+                  values="5;21;5" 
+                  begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                <animate attributeName="y" attributeType="XML"
+                  values="13; 5; 13"
+                  begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+              </rect>
+            </svg>
+          </div>
+    </div>
+
     <div class="scbox">
         <div class="sctitle">
             Schedule
@@ -26,47 +60,72 @@
         <div class="scheader">
             <div class="scheaderperiod">Period</div>
             <div class="scheadername">Course</div>
+            <div class="scteach">Teacher</div>
         </div>
         <div class="sccourse" id="c1">
             <div class="scperiod">1</div>
             <div class="scname">
-                <input class="scinput" type="text" id="c1input">
+                <input class="scinput" type="text" placeholder="Course 1" id="c1input">
                 <ul class="list1"></ul>
+            </div>
+            <div class="scteacher">
+                <input class="tinput" type="text" placeholder="Teacher 1" id="c1teacher">
+                <ul class="listT1"></ul>
             </div>
         </div>
         <div class="sccourse" id="c2">
             <div class="scperiod">2</div>
             <div class="scname">
-                <input class="scinput" type="text" id="c2input">
+                <input class="scinput" type="text" placeholder="Course 2" id="c2input">
                 <ul class="list2"></ul>
+            </div>
+            <div class="scteacher">
+                <input class="tinput" type="text" placeholder="Teacher 2" id="c2teacher">
+                <ul class="listT2"></ul>
             </div>
         </div>
         <div class="sccourse" id="c3">
             <div class="scperiod">3</div>
             <div class="scname">
-                <input class="scinput" type="text" id="c3input">
+                <input class="scinput" type="text" placeholder="Course 3" id="c3input">
                 <ul class="list3"></ul>
+            </div>
+            <div class="scteacher">
+                <input class="tinput" type="text" placeholder="Teacher 3" id="c3teacher">
+                <ul class="listT3"></ul>
             </div>
         </div>
         <div class="sccourse" id="c4">
             <div class="scperiod">4</div>
             <div class="scname">
-                <input class="scinput" type="text" id="c4input">
+                <input class="scinput" type="text" placeholder="Course 4" id="c4input">
                 <ul class="list4"></ul>
+            </div>
+            <div class="scteacher">
+                <input class="tinput" type="text" placeholder="Teacher 4" id="c4teacher">
+                <ul class="listT4"></ul>
             </div>
         </div>
         <div class="sccourse" id="c5">
             <div class="scperiod">5</div>
             <div class="scname">
-                <input class="scinput" type="text" id="c5input">
+                <input class="scinput" type="text" placeholder="Course 5" id="c5input">
                 <ul class="list5"></ul>
+            </div>                
+            <div class="scteacher">
+                <input class="tinput" type="text" placeholder="Teacher 5" id="c5teacher">
+                <ul class="listT5"></ul>
             </div>
         </div>
         <div class="sccourselast" id="c6">
             <div class="scperiod">6</div>
             <div class="scname">
-                <input class="scinput" type="text" id="c6input">
+                <input class="scinput" type="text" placeholder="Course 6" id="c6input">
                 <ul class="list6"></ul>
+            </div>
+            <div class="scteacher">
+                <input class="tinput" type="text" placeholder="Teacher 6" id="c6teacher">
+                <ul class="listT6"></ul>
             </div>
         </div>
 
@@ -104,18 +163,30 @@
             <div class="headerperiod">Period</div>
             <div class="headername">Course</div>
             <div class="headerteacher">Teacher</div>
+            <div class="headerstudents">Students</div>
         </div>
         <div class="listbox">
         </div>
     </div>
 
+    <div class="scroll"></div>
+
     <div class="solutionbox">
         <div class="stitle">
             Solutions
         </div>
+        <div id="numOf" class="subtitle">Showing 0 out of 0 possible schedules</div>
         <div class="cardsbox">
 
         </div>
+    </div>
+
+    <div class="switchbox">
+        <div class="close">X</div>
+        <div class="switchheader">The student will change the following courses: </div>
+        <ul class="switchlist">
+        </ul>
+        <button class="switchbutton">Make changes</button>
     </div>
 </body>
 </html>

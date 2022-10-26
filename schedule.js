@@ -1,10 +1,12 @@
-let debug = true;
+let debug = false;
 
 export function findSolutions(wantedId, unwantedId, schedule,courses) {
     //Array for possible schedules (solutions)
     var solutions = {
       possibleSchedules: [],
-      changes: []
+      changes: [],
+      details: [],
+      modified: []
     };
 
     let emptyPeriod = checkEmptyPeriod(unwantedId,schedule);
@@ -23,6 +25,8 @@ export function findSolutions(wantedId, unwantedId, schedule,courses) {
         let altSchedule = schedule.slice();
   
         let changesMade = 0;
+        let cDetails = [];
+        let cModified = [];
   
         //Put the wanted course at the specified period in (new) schedule
         let wantedCourse = findCourse(wantedId, periods[i],courses);
@@ -40,7 +44,9 @@ export function findSolutions(wantedId, unwantedId, schedule,courses) {
           altSchedule,
           wantedCourse,
           changesMade,
-          courses
+          courses,
+          cDetails,
+          cModified
         );
       }
     } else {
@@ -64,17 +70,31 @@ function replaceCourse(
     altSchedule,
     replacingCourse,
     changesMade,
-    courses
+    courses,
+    cDetails,
+    cModified
     ) {
     //Get the course that was at that period, that course will go somewhere else (if possible)
     let replacedCourse = checkPeriod(period,schedule);
 
     let newAltSchedule = altSchedule.slice();
+
     let newChangesMade = changesMade;
+    let newDetails = [...cDetails];
+    let newModified = [...cModified];
 
     newAltSchedule[period - 1] = replacingCourse;
+      
+    if (replacingCourse.getName() == wantedId) {
+        newDetails.push(replacingCourse.getName() + " is placed at period " + period);
+    } else {
+        newDetails.push(replacingCourse.getName() + " moved to period " + period);
+    }
+
+    newModified.push([period,replacingCourse.getName()]);
 
     newChangesMade += 1;
+
 
     //Checks first if the course is the unwanted course
     if (replacedCourse.name == unwantedId) {
@@ -84,6 +104,9 @@ function replaceCourse(
 
         solutions.possibleSchedules.push(newAltSchedule);
         solutions.changes.push(newChangesMade);
+        solutions.details.push(newDetails);
+        solutions.modified.push(newModified);
+        console.log("resolved");
     } else {
         //Get all the periods the course has
         let altPeriods = allPeriods(replacedCourse.getName(),courses);
@@ -106,6 +129,7 @@ function replaceCourse(
         if (debug) {
             console.log("Dead end is reached");
         }
+
         //Loops through the rest of the possible periods
         } else {
         for (let i = 0; i < altPeriods.length; i++) {
@@ -117,9 +141,14 @@ function replaceCourse(
 
                 newAltSchedule[emptyPeriod - 1] = replacedCourse;
                 newChangesMade += 1;
+                newDetails.push(replacedCourse.getName() + " moved to period " + emptyPeriod)
+                newModified.push([emptyPeriod.toString(), replacedCourse.getName()]);
 
                 solutions.possibleSchedules.push(newAltSchedule);
                 solutions.changes.push(newChangesMade);
+                solutions.details.push(newDetails);
+                solutions.modified.push(newModified)
+                console.log("resolved");
             } else {
                 let currentTaken = taken.slice();
 
@@ -141,7 +170,9 @@ function replaceCourse(
                     newAltSchedule,
                     replacedCourse,
                     newChangesMade,
-                    courses
+                    courses,
+                    newDetails,
+                    newModified
                 );
                 }
             }
@@ -152,8 +183,6 @@ function replaceCourse(
 function checkPeriod(period,schedule) {
     return schedule[period - 1];
 }
-
-
 
 function checkEmptyPeriod(unwantedId,schedule) {
     let emptyPeriod;
@@ -214,3 +243,52 @@ function removeSimilarity(original, reference) {
     }
 }
 
+function bubbleSort(arr,schedule,changesAr,modified) {
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr.length - 1 - i; j++) {
+            if (arr[j] > arr[j + 1]) {
+                let temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+
+                let tempSchedule = schedule[j];
+                schedule[j] = schedule[j+1];
+                schedule[j + 1] = tempSchedule;
+
+                let tempCA = changesAr[j];
+                changesAr[j] = changesAr[j+1];
+                changesAr[j+1] = tempCA;
+
+                let tempM = modified[j];
+                modified[j] = modified[j+1];
+                modified[j+1] = tempM;
+            }
+        }
+    }
+
+    return arr;
+}
+
+export function sortSolutions(solutions) {
+    bubbleSort(solutions.changes,solutions.possibleSchedules,solutions.details,solutions.modified);
+}
+
+export function configureC(solutionsdetails) {
+    let highlight = [];
+
+    for (let i=0; i<solutionsdetails.length; i++) {
+        let current = [];
+
+        for (let j=0; j<solutionsdetails[i].length; j++) {
+            let last = (solutionsdetails[i][j].length)-1;
+
+            let num = Number(solutionsdetails[i][j][last])
+
+            current.push(num);
+        }
+
+        highlight.push(current)
+    }
+
+    return highlight;
+}
